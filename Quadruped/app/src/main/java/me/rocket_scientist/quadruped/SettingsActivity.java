@@ -40,7 +40,7 @@ public class SettingsActivity extends FragmentActivity {
     public int stoprun = 0;
     @Override public void onStop(){
         super.onStop();
-        bluetooth_send("#SC");
+        bluetooth_send("#H");
         stoprun = 1;
         RSettingsActivity = false;
     }
@@ -50,7 +50,7 @@ public class SettingsActivity extends FragmentActivity {
             finish();
         }else if(stoprun == 1){
             stoprun = 0;
-            bluetooth_send("#SO");
+            bluetooth_send("#F");
         }
     }
     static int ledsel = 1;
@@ -233,18 +233,18 @@ public class SettingsActivity extends FragmentActivity {
                     mHandler.removeCallbacks(mAction);
                     mHandler = null;
                 }
-                bluetooth_send("#SW");
+                bluetooth_send("#G");
             }
             Runnable mAction = new Runnable() {
                 @Override public void run() {
                 if(Caliblevel < 0){
-                    bluetooth_send(("#SD-").concat(String.format("%01d", (int)(Caliblevel-(2*Caliblevel)))).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
+                    bluetooth_send(("#I-").concat(String.format("%01d", (int)(Caliblevel-(2*Caliblevel)))).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
                 }
                 else if(Caliblevel > 0){
-                    bluetooth_send(("#SD+").concat(String.format("%01d", (int)Caliblevel)).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
+                    bluetooth_send(("#I+").concat(String.format("%01d", (int)Caliblevel)).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
                 }
                 else{
-                    bluetooth_send(("#SD+0").concat(String.format("%01d", (int)CalibMSel)));//#SD+01
+                    bluetooth_send(("#I+0").concat(String.format("%01d", (int)CalibMSel)));//#SD+01
                 }
                 mHandler.postDelayed(this, 40);
                 }
@@ -450,15 +450,15 @@ public class SettingsActivity extends FragmentActivity {
                     }
                 }
                 if(Caliblevel < 0){
-                    bluetooth_send(("#SD-").concat(String.format("%01d", (int)(Caliblevel-(2*Caliblevel)))).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
+                    bluetooth_send(("#I-").concat(String.format("%01d", (int)(Caliblevel-(2*Caliblevel)))).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
                 }
                 else if(Caliblevel > 0){
-                    bluetooth_send(("#SD+").concat(String.format("%01d", (int)Caliblevel)).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
+                    bluetooth_send(("#I+").concat(String.format("%01d", (int)Caliblevel)).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
                 }
                 else{
-                    bluetooth_send(("#SD+0").concat(String.format("%01d", (int)CalibMSel)));//#SD+01
+                    bluetooth_send(("#I+0").concat(String.format("%01d", (int)CalibMSel)));//#SD+01
                 }
-                bluetooth_send("#SW");
+                bluetooth_send("#G");
             }
         });
 
@@ -505,15 +505,15 @@ public class SettingsActivity extends FragmentActivity {
                     }
                 }
                 if(Caliblevel < 0){
-                    bluetooth_send(("#SD-").concat(String.format("%01d", (int)(Caliblevel-(2*Caliblevel)))).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
+                    bluetooth_send(("#I-").concat(String.format("%01d", (int)(Caliblevel-(2*Caliblevel)))).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
                 }
                 else if(Caliblevel > 0){
-                    bluetooth_send(("#SD+").concat(String.format("%01d", (int)Caliblevel)).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
+                    bluetooth_send(("#I+").concat(String.format("%01d", (int)Caliblevel)).concat(String.format("%01d", (int)CalibMSel)));//#SD+91
                 }
                 else{
-                    bluetooth_send(("#SD+0").concat(String.format("%01d", (int)CalibMSel)));//#SD+01
+                    bluetooth_send(("#I+0").concat(String.format("%01d", (int)CalibMSel)));//#SD+01
                 }
-                bluetooth_send("#SW");
+                bluetooth_send("#G");
             }
         });
 ///  #3 Close button
@@ -552,7 +552,7 @@ public class SettingsActivity extends FragmentActivity {
                             i++;
                         }
                     }
-                    bluetooth_send(("#SS").concat(nName).concat(nPassword));
+                    bluetooth_send(("#J").concat(nName).concat(nPassword));
                     enable_actions(false);
                     Close.setEnabled(false);
                     ConnectActivity.unpairBtDev(ConnectActivity.btcode);
@@ -585,7 +585,7 @@ public class SettingsActivity extends FragmentActivity {
 ///  Request levels, name and password
         RSettingsActivity = true;
         enable_actions(false);
-        bluetooth_send("#SO");
+        bluetooth_send("#F");
     }
 
 //// #0 Common functions
