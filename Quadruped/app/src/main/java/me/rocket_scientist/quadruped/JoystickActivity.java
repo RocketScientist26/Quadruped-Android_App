@@ -207,7 +207,7 @@ public class JoystickActivity extends FragmentActivity {
             }
             Runnable mAction = new Runnable() {
                 @Override public void run() {
-                    bluetooth_send(("#L").concat(String.format("%03d", LJAngleTxt)).concat("-").concat(String.format("%03d", LJStrengthTxt)));
+                    bluetooth_send(("#L").concat(String.format("%03d", LJAngleTxt)).concat("-").concat(String.format("%02d", LJStrengthTxt)));
                     mHandler.postDelayed(this, 40);
                 }
             };
@@ -488,7 +488,7 @@ public class JoystickActivity extends FragmentActivity {
                 @Override public void run() {
                     //DebugTxt.setText(("#K").concat(String.format("%03d", (int)tiltangle)));
                     //DebugTxt.setText(("#K").concat(String.format("%03d", (int)tiltangle)).concat("-").concat(String.format("%02d", (int)acclevel)));//tiltangle
-                    bluetooth_send(("#K").concat(String.format("%03d", (int)tiltangle)).concat("-").concat(String.format("%03d", (int)acclevel)));//tiltangle
+                    bluetooth_send(("#K").concat(String.format("%03d", (int)tiltangle)).concat("-").concat(String.format("%02d", (int)acclevel)));//tiltangle
 					//DebugTxt.setText(("#K").concat(String.format("%03d", (int)tiltangle)).concat("-").concat(String.format("%02d", (int)acclevel)));
                     mHandler.postDelayed(this, 40);//40
                 }
