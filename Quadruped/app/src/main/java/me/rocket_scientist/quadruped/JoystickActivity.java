@@ -207,7 +207,7 @@ public class JoystickActivity extends FragmentActivity {
             }
             Runnable mAction = new Runnable() {
                 @Override public void run() {
-                    bluetooth_send(("#L").concat(String.format("%03d", LJAngleTxt)).concat("-").concat(String.format("%02d", LJStrengthTxt)));
+                    bluetooth_send(("#L").concat(String.format("%02d", LJAngleTxt)).concat("-").concat(String.format("%02d", LJStrengthTxt)));
                     mHandler.postDelayed(this, 40);
                 }
             };
