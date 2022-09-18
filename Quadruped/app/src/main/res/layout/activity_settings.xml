@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
-    android:gravity="center"
     tools:context=".SettingsActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/settings_background"
+        android:background="@drawable/sa_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="H,16:9"
         app:layout_constraintEnd_toStartOf="@+id/space2"
-        app:layout_constraintStart_toEndOf="@+id/space"
+        app:layout_constraintStart_toEndOf="@+id/space1"
         app:layout_constraintTop_toTopOf="parent">
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.411" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.586" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="1" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,43 +47,45 @@
             app:layout_constraintGuide_percent="0.900" />
 
         <ImageButton
-            android:id="@+id/close"
+            android:id="@+id/ImageButton_Close"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_close_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_close"
+            android:src="@drawable/sa_close"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+            app:layout_constraintTop_toTopOf="@+id/guideline4"
+            tools:ignore="RedundantDescriptionCheck" />
 
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.739" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.914" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.746" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,43 +93,45 @@
             app:layout_constraintGuide_percent="0.636" />
 
         <ImageButton
-            android:id="@+id/save"
+            android:id="@+id/ImageButton_Save"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_save_and_unpair_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_save"
+            android:src="@drawable/sa_save"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toStartOf="@+id/guideline6"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toTopOf="@+id/guideline8" />
+            app:layout_constraintTop_toTopOf="@+id/guideline8"
+            tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck" />
 
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.019" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.113" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.847" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -137,43 +139,45 @@
             app:layout_constraintGuide_percent="0.777" />
 
         <ImageButton
-            android:id="@+id/dec"
+            android:id="@+id/ImageButton_Dec"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_calib_dec_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_dec"
+            android:src="@drawable/sa_dec"
             app:layout_constraintBottom_toTopOf="@+id/guideline11"
             app:layout_constraintEnd_toStartOf="@+id/guideline10"
             app:layout_constraintStart_toStartOf="@+id/guideline9"
-            app:layout_constraintTop_toTopOf="@+id/guideline12" />
+            app:layout_constraintTop_toTopOf="@+id/guideline12"
+            tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck" />
 
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.019" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.113" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.116" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -181,42 +185,44 @@
             app:layout_constraintGuide_percent="0.046" />
 
         <ImageButton
-            android:id="@+id/inc"
+            android:id="@+id/ImageButton_Inc"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_calib_inc_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_inc"
+            android:src="@drawable/sa_inc"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toStartOf="@+id/guideline14"
             app:layout_constraintStart_toStartOf="@+id/guideline13"
-            app:layout_constraintTop_toTopOf="@+id/guideline16" />
+            app:layout_constraintTop_toTopOf="@+id/guideline16"
+            tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck" />
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.577" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.610" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.255" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -224,28 +230,30 @@
             app:layout_constraintGuide_percent="0.202" />
 
         <ImageButton
-            android:id="@+id/m4"
+            android:id="@+id/ImageButton_M4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_m4_calib_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_switch_sel"
+            android:src="@drawable/sa_sw_sel"
             app:layout_constraintBottom_toTopOf="@+id/guideline19"
             app:layout_constraintEnd_toStartOf="@+id/guideline18"
             app:layout_constraintStart_toStartOf="@+id/guideline17"
-            app:layout_constraintTop_toTopOf="@+id/guideline20" />
+            app:layout_constraintTop_toTopOf="@+id/guideline20"
+            tools:ignore="TouchTargetSizeCheck, ContentDescription,RedundantDescriptionCheck" />
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.316" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -253,27 +261,29 @@
             app:layout_constraintGuide_percent="0.263" />
 
         <ImageButton
-            android:id="@+id/m5"
+            android:id="@+id/ImageButton_M5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_m5_calib_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_switch_unsel"
+            android:src="@drawable/sa_sw_unsel"
             app:layout_constraintBottom_toTopOf="@+id/guideline21"
             app:layout_constraintEnd_toStartOf="@+id/guideline18"
             app:layout_constraintStart_toStartOf="@+id/guideline17"
-            app:layout_constraintTop_toTopOf="@+id/guideline22" />
+            app:layout_constraintTop_toTopOf="@+id/guideline22"
+            tools:ignore="TouchTargetSizeCheck, ContentDescription,ImageContrastCheck,RedundantDescriptionCheck" />
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.395" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -281,27 +291,29 @@
             app:layout_constraintGuide_percent="0.342" />
 
         <ImageButton
-            android:id="@+id/m3"
+            android:id="@+id/ImageButton_M3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_m3_calib_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_switch_unsel"
+            android:src="@drawable/sa_sw_unsel"
             app:layout_constraintBottom_toTopOf="@+id/guideline23"
             app:layout_constraintEnd_toStartOf="@+id/guideline18"
             app:layout_constraintStart_toStartOf="@+id/guideline17"
-            app:layout_constraintTop_toTopOf="@+id/guideline24" />
+            app:layout_constraintTop_toTopOf="@+id/guideline24"
+            tools:ignore="TouchTargetSizeCheck, ContentDescription,ImageContrastCheck,RedundantDescriptionCheck" />
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.456" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -309,28 +321,30 @@
             app:layout_constraintGuide_percent="0.403" />
 
         <ImageButton
-            android:id="@+id/m6"
+            android:id="@+id/ImageButton_M6"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_m6_calib_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_switch_unsel"
+            android:src="@drawable/sa_sw_unsel"
             app:layout_constraintBottom_toTopOf="@+id/guideline25"
             app:layout_constraintEnd_toStartOf="@+id/guideline18"
             app:layout_constraintStart_toStartOf="@+id/guideline17"
-            app:layout_constraintTop_toTopOf="@+id/guideline26" />
+            app:layout_constraintTop_toTopOf="@+id/guideline26"
+            tools:ignore="TouchTargetSizeCheck, ContentDescription,ImageContrastCheck,RedundantDescriptionCheck" />
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline27"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.634" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -338,28 +352,30 @@
             app:layout_constraintGuide_percent="0.580" />
 
         <ImageButton
-            android:id="@+id/m2"
+            android:id="@+id/ImageButton_M2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_m2_calib_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_switch_unsel"
+            android:src="@drawable/sa_sw_unsel"
             app:layout_constraintBottom_toTopOf="@+id/guideline27"
             app:layout_constraintEnd_toStartOf="@+id/guideline18"
             app:layout_constraintStart_toStartOf="@+id/guideline17"
-            app:layout_constraintTop_toTopOf="@+id/guideline28" />
+            app:layout_constraintTop_toTopOf="@+id/guideline28"
+            tools:ignore="TouchTargetSizeCheck, ContentDescription,ImageContrastCheck,RedundantDescriptionCheck" />
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.695" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -367,28 +383,30 @@
             app:layout_constraintGuide_percent="0.641" />
 
         <ImageButton
-            android:id="@+id/m7"
+            android:id="@+id/ImageButton_M7"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_m7_calib_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_switch_unsel"
+            android:src="@drawable/sa_sw_unsel"
             app:layout_constraintBottom_toTopOf="@+id/guideline29"
             app:layout_constraintEnd_toStartOf="@+id/guideline18"
             app:layout_constraintStart_toStartOf="@+id/guideline17"
-            app:layout_constraintTop_toTopOf="@+id/guideline30" />
+            app:layout_constraintTop_toTopOf="@+id/guideline30"
+            tools:ignore="TouchTargetSizeCheck, ContentDescription,ImageContrastCheck,RedundantDescriptionCheck" />
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline31"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.769" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -396,30 +414,32 @@
             app:layout_constraintGuide_percent="0.716" />
 
         <ImageButton
-            android:id="@+id/m1"
+            android:id="@+id/ImageButton_M1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_m1_calib_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_switch_unsel"
+            android:src="@drawable/sa_sw_unsel"
             app:layout_constraintBottom_toTopOf="@+id/guideline31"
             app:layout_constraintEnd_toStartOf="@+id/guideline18"
             app:layout_constraintStart_toStartOf="@+id/guideline17"
-            app:layout_constraintTop_toTopOf="@+id/guideline32" />
+            app:layout_constraintTop_toTopOf="@+id/guideline32"
+            tools:ignore="TouchTargetSizeCheck, ContentDescription,ImageContrastCheck,RedundantDescriptionCheck" />
 
 
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline33"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.830" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline34"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -427,85 +447,88 @@
             app:layout_constraintGuide_percent="0.777" />
 
         <ImageButton
-            android:id="@+id/m8"
+            android:id="@+id/ImageButton_M8"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_m8_calib_button"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_switch_unsel"
+            android:src="@drawable/sa_sw_unsel"
             app:layout_constraintBottom_toTopOf="@+id/guideline33"
             app:layout_constraintEnd_toStartOf="@+id/guideline18"
             app:layout_constraintStart_toStartOf="@+id/guideline17"
-            app:layout_constraintTop_toTopOf="@+id/guideline34" />
+            app:layout_constraintTop_toTopOf="@+id/guideline34"
+            tools:ignore="TouchTargetSizeCheck, ContentDescription,ImageContrastCheck,RedundantDescriptionCheck" />
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.022" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.108" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.718" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline38"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.182" />
 
-        <me.rocket_scientist.quadruped.VerticalSeekbarClass
-            android:id="@+id/calibrate_seekbar"
+        <me.rocket_scientist.rsuielements.RsVertSlider
+            android:id="@+id/RsVertSlider_Slider"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@null"
             android:max="18"
             android:progress="9"
             android:progressDrawable="@null"
-            android:thumb="@drawable/settings_slider"
+            android:thumb="@drawable/sa_slider"
+            android:layout_centerInParent="true"
             app:layout_constraintBottom_toTopOf="@+id/guideline37"
             app:layout_constraintEnd_toStartOf="@+id/guideline36"
             app:layout_constraintStart_toStartOf="@+id/guideline35"
             app:layout_constraintTop_toTopOf="@+id/guideline38" />
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline39"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.525" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.570" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline41"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.250" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -513,7 +536,7 @@
             app:layout_constraintGuide_percent="0.215" />
 
         <TextView
-            android:id="@+id/mVal4"
+            android:id="@+id/TextView_MVal4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -523,16 +546,17 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline41"
             app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
-            app:layout_constraintTop_toTopOf="@+id/guideline42" />
+            app:layout_constraintTop_toTopOf="@+id/guideline42"
+            tools:ignore="HardcodedText, SmallSp" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline43"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.307" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -540,7 +564,7 @@
             app:layout_constraintGuide_percent="0.272" />
 
         <TextView
-            android:id="@+id/mVal5"
+            android:id="@+id/TextView_MVal5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -550,18 +574,19 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline43"
             app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
-            app:layout_constraintTop_toTopOf="@+id/guideline44" />
+            app:layout_constraintTop_toTopOf="@+id/guideline44"
+            tools:ignore="HardcodedText, SmallSp" />
 
-<!-- -->
+        <!-- -->
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline45"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.387" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline46"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -569,7 +594,7 @@
             app:layout_constraintGuide_percent="0.352" />
 
         <TextView
-            android:id="@+id/mVal3"
+            android:id="@+id/TextView_MVal3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -579,16 +604,17 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline45"
             app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
-            app:layout_constraintTop_toTopOf="@+id/guideline46" />
+            app:layout_constraintTop_toTopOf="@+id/guideline46"
+            tools:ignore="HardcodedText, SmallSp" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline47"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.444" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline48"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -596,7 +622,7 @@
             app:layout_constraintGuide_percent="0.409" />
 
         <TextView
-            android:id="@+id/mVal6"
+            android:id="@+id/TextView_MVal6"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -606,17 +632,18 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline47"
             app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
-            app:layout_constraintTop_toTopOf="@+id/guideline48" />
-<!--       !!!!     -->
+            app:layout_constraintTop_toTopOf="@+id/guideline48"
+            tools:ignore="HardcodedText, SmallSp" />
+        <!--       !!!!     -->
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline49"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.625" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -624,7 +651,7 @@
             app:layout_constraintGuide_percent="0.590" />
 
         <TextView
-            android:id="@+id/mVal2"
+            android:id="@+id/TextView_MVal2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -634,16 +661,17 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline49"
             app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
-            app:layout_constraintTop_toTopOf="@+id/guideline50" />
+            app:layout_constraintTop_toTopOf="@+id/guideline50"
+            tools:ignore="HardcodedText, SmallSp" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline51"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.682" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline52"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -651,7 +679,7 @@
             app:layout_constraintGuide_percent="0.647" />
 
         <TextView
-            android:id="@+id/mVal7"
+            android:id="@+id/TextView_MVal7"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -661,18 +689,19 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline51"
             app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
-            app:layout_constraintTop_toTopOf="@+id/guideline52" />
+            app:layout_constraintTop_toTopOf="@+id/guideline52"
+            tools:ignore="HardcodedText, SmallSp" />
 
         <!-- -->
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline53"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.762" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline54"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -680,7 +709,7 @@
             app:layout_constraintGuide_percent="0.727" />
 
         <TextView
-            android:id="@+id/mVal1"
+            android:id="@+id/TextView_MVal1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -690,16 +719,17 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline53"
             app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
-            app:layout_constraintTop_toTopOf="@+id/guideline54" />
+            app:layout_constraintTop_toTopOf="@+id/guideline54"
+            tools:ignore="HardcodedText, SmallSp" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline55"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.819" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline56"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -707,7 +737,7 @@
             app:layout_constraintGuide_percent="0.784" />
 
         <TextView
-            android:id="@+id/mVal8"
+            android:id="@+id/TextView_MVal8"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -717,31 +747,33 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline55"
             app:layout_constraintEnd_toStartOf="@+id/guideline40"
             app:layout_constraintStart_toStartOf="@+id/guideline39"
-            app:layout_constraintTop_toTopOf="@+id/guideline56" />
+            app:layout_constraintTop_toTopOf="@+id/guideline56"
+            tools:ignore="HardcodedText, SmallSp" />
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline57"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.763" />
+            app:layout_constraintGuide_percent="0.763"
+            tools:ignore="TooManyViews" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline58"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.889" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline59"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.547" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -749,7 +781,7 @@
             app:layout_constraintGuide_percent="0.511" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/EditText_Pwd"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -757,6 +789,8 @@
             android:cursorVisible="false"
             android:ems="10"
             android:gravity="center"
+            android:hint="@string/desc_bt_pwd_input"
+            android:importantForAutofill="no"
             android:inputType="numberPassword"
             android:maxLength="4"
             android:textColor="@android:color/white"
@@ -764,17 +798,18 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline59"
             app:layout_constraintEnd_toStartOf="@+id/guideline58"
             app:layout_constraintStart_toStartOf="@+id/guideline57"
-            app:layout_constraintTop_toTopOf="@+id/guideline60" />
-<!-- -->
+            app:layout_constraintTop_toTopOf="@+id/guideline60"
+            tools:ignore="TouchTargetSizeCheck, SmallSp,TextContrastCheck" />
+        <!-- -->
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline61"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.414" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline62"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -782,7 +817,7 @@
             app:layout_constraintGuide_percent="0.377" />
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/EditText_Name"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -791,39 +826,43 @@
             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
             android:ems="10"
             android:gravity="center"
+            android:hint="@string/desc_bt_name_input"
             android:imeOptions="flagForceAscii"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:maxLength="10"
             android:textColor="@android:color/white"
             android:textSize="9sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline61"
             app:layout_constraintEnd_toStartOf="@+id/guideline58"
             app:layout_constraintStart_toStartOf="@+id/guideline57"
-            app:layout_constraintTop_toTopOf="@+id/guideline62" />
+            app:layout_constraintTop_toTopOf="@+id/guideline62"
+            tools:ignore="TouchTargetSizeCheck, SmallSp,TextContrastCheck" />
 
 
         <!-- -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.833" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline64"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.981" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline65"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.966" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline66"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -831,25 +870,27 @@
             app:layout_constraintGuide_percent="0.879" />
 
         <ImageButton
-            android:id="@+id/led"
+            android:id="@+id/ImageButton_Led"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@null"
+            android:contentDescription="@string/desc_led_checkbox"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings_led_sel"
+            android:src="@drawable/sa_led_checked"
             app:layout_constraintBottom_toTopOf="@+id/guideline65"
             app:layout_constraintEnd_toStartOf="@+id/guideline64"
             app:layout_constraintStart_toStartOf="@+id/guideline63"
-            app:layout_constraintTop_toTopOf="@+id/guideline66" />
+            app:layout_constraintTop_toTopOf="@+id/guideline66"
+            tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck" />
 
 
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Space
-        android:id="@+id/space"
+        android:id="@+id/space1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -867,4 +908,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.503" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

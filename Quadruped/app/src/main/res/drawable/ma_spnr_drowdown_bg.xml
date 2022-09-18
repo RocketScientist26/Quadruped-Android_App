@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="0dp" />
+    <solid android:color="#0011354f" />
+    <item
+        android:state_enabled="true"
+        android:state_pressed="false"
+        android:drawable="@drawable/ma_spnr_drowdown_bg_u" />
+    <item
+        android:state_enabled="true"
+        android:state_pressed="true"
+        android:drawable="@drawable/ma_spnr_drowdown_bg_d" />
+</selector>

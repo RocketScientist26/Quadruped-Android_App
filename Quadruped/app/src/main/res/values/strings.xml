@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">Quadruped</string>
+    <string name="spinner_no_devices">No paired robots found</string>
+
+    <string name="desc_project_page">Project page button</string>
+    <string name="desc_spinner">Device selection spinner</string>
+    <string name="desc_exit_button">Exit button</string>
+    <string name="desc_connect_button">Connect button</string>
+
+    <string name="desc_up_button">Move forward button</string>
+    <string name="desc_down_button">Move backward button</string>
+    <string name="desc_left_button">Move left button</string>
+    <string name="desc_right_button">Move right button</string>
+    <string name="desc_turn_left_button">Turn left button</string>
+    <string name="desc_turn_right_button">Turn right button</string>
+    <string name="desc_speed_button">Change speed button</string>
+    <string name="desc_swim_button">Do trick swim button</string>
+    <string name="desc_workout_button">Workout button</string>
+    <string name="desc_hello_button">Do trick hello button</string>
+    <string name="desc_cmd_button">Voice command button</string>
+    <string name="desc_disconnect_button">Disconnect button</string>
+    <string name="desc_settings_button">Settings page open button</string>
+
+    <string name="desc_close_button">Settings page close button</string>
+    <string name="desc_save_and_unpair_button">Bluetooth settings save button</string>
+    <string name="desc_m1_calib_button">Motor one calibration selection button</string>
+    <string name="desc_m2_calib_button">Motor two calibration selection button</string>
+    <string name="desc_m3_calib_button">Motor three calibration selection button</string>
+    <string name="desc_m4_calib_button">Motor four calibration selection button</string>
+    <string name="desc_m5_calib_button">Motor five calibration selection button</string>
+    <string name="desc_m6_calib_button">Motor six calibration selection button</string>
+    <string name="desc_m7_calib_button">Motor seven calibration selection button</string>
+    <string name="desc_m8_calib_button">Motor eight calibration selection button</string>
+    <string name="desc_calib_inc_button">Motor calibration value increase button</string>
+    <string name="desc_calib_dec_button">Motor calibration value decrease button</string>
+    <string name="desc_bt_name_input">Bluetooth name change input field</string>
+    <string name="desc_bt_pwd_input">Bluetooth password change input field</string>
+    <string name="desc_led_checkbox">Heartbeat LED on off toggle check box</string>
 </resources>
