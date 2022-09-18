@@ -6,18 +6,18 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import me.rocket_scientist.rsuielements.RsVertSlider
-
+import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
     //Commands from external activity
@@ -69,6 +69,9 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var button_save: ImageButton
     private lateinit var button_led: ImageButton
 
+    private fun vibrate() {
+        MainActivity.vibrate(this)
+    }
     private fun btnSelM() {
         button_m1.setImageResource(R.drawable.sa_sw_unsel)
         button_m2.setImageResource(R.drawable.sa_sw_unsel)
@@ -157,6 +160,7 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
     }
+    private var timer = Timer()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -191,10 +195,83 @@ class SettingsActivity : AppCompatActivity() {
         button_save = findViewById(R.id.ImageButton_Save)
         button_led = findViewById(R.id.ImageButton_Led)
 
+        slider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            private var level = 0
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, userAction: Boolean) {
+                level = progress - 9
+                when(cm){
+                    1 -> {
+                        m1 = level
+                        text_m1.text = level.toString()
+                    }
+                    2 -> {
+                        m2 = level
+                        text_m2.text = level.toString()
+                    }
+                    3 -> {
+                        m3 = level
+                        text_m3.text = level.toString()
+                    }
+                    4 -> {
+                        m4 = level
+                        text_m4.text = level.toString()
+                    }
+                    5 -> {
+                        m5 = level
+                        text_m5.text = level.toString()
+                    }
+                    6 -> {
+                        m6 = level
+                        text_m6.text = level.toString()
+                    }
+                    7 -> {
+                        m7 = level
+                        text_m7.text = level.toString()
+                    }
+                    8 -> {
+                        m8 = level
+                        text_m8.text = level.toString()
+                    }
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                vibrate()
+                timer.cancel()
+                timer = Timer()
+                timer.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval){
+                    if(level < 0){
+                        MainActivity.btth_w.sendString("#I$level$cm")
+                    }else{
+                        MainActivity.btth_w.sendString("#I+$level$cm")
+                    }
+                }
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                when(cm){
+                    1 -> slider.progress = m1 + 9
+                    2 -> slider.progress = m2 + 9
+                    3 -> slider.progress = m3 + 9
+                    4 -> slider.progress = m4 + 9
+                    5 -> slider.progress = m5 + 9
+                    6 -> slider.progress = m6 + 9
+                    7 -> slider.progress = m7 + 9
+                    8 -> slider.progress = m8 + 9
+                }
+                if (mHandler != null) {
+                    mHandler!!.removeCallbacks(mAction)
+                    mHandler = null
+                }
+                MainActivity.btth_w.sendString("#G")
+            }
+        })
+
+
         val touchVibr = View.OnTouchListener{ v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    MainActivity.vibrate(this)
+                    vibrate()
                 }
             }
             v?.onTouchEvent(event) ?: true

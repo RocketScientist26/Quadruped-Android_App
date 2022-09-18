@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <item
     android:state_enabled="true"
     android:state_pressed="false"
@@ -10,5 +11,5 @@
     android:drawable="@drawable/sa_slider_d" />
     <item
     android:state_enabled="false"
-    android:drawable="@drawable/sa_slider_d" />
+    android:drawable="@drawable/sa_slider_u" />
 </selector>

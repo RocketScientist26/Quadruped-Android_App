@@ -67,7 +67,9 @@ class MainActivity : AppCompatActivity() {
         //State machine for external StoreToFlash command
         var flash_store_rq = false
         //Command responce timeout
-        val cmd_timeout_ms: Long = 500;
+        val cmd_timeout_ms: Long = 500
+        //Command sending interval
+        val cmd_interval: Long = 100
 
         lateinit var btth_w: RsBtWriteThread
 
@@ -224,7 +226,7 @@ class MainActivity : AppCompatActivity() {
 
                 timer = Timer()
                 timer.schedule(cmd_timeout_ms) {
-                    disconnect();
+                    disconnect()
                 }
                 btth_w.sendString("#?")
             }

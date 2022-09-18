@@ -30,8 +30,6 @@ class JoystickActivity : AppCompatActivity() {
             }
         }
     }
-    //Command sending interval
-    private val cmd_interval: Long = 100;
     //Speed
     private var speed = 1
     //Command sending timer
@@ -83,7 +81,7 @@ class JoystickActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     MainActivity.vibrate(this)
                     timer_cmd = Timer()
-                    timer_cmd.schedule(cmd_interval, cmd_interval) {
+                    timer_cmd.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                         MainActivity.btth_w.sendString("#D1")
                     }
                 }
@@ -97,7 +95,7 @@ class JoystickActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     MainActivity.vibrate(this)
                     timer_cmd = Timer()
-                    timer_cmd.schedule(cmd_interval, cmd_interval) {
+                    timer_cmd.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                         MainActivity.btth_w.sendString("#D2")
                     }
                 }
@@ -111,7 +109,7 @@ class JoystickActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     MainActivity.vibrate(this)
                     timer_cmd = Timer()
-                    timer_cmd.schedule(cmd_interval, cmd_interval) {
+                    timer_cmd.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                         MainActivity.btth_w.sendString("#D3")
                     }
                 }
@@ -144,7 +142,7 @@ class JoystickActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     MainActivity.vibrate(this)
                     timer_cmd = Timer()
-                    timer_cmd.schedule(cmd_interval, cmd_interval) {
+                    timer_cmd.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                         when(speed){
                             1 -> MainActivity.btth_w.sendString("#1-1")
                             2 -> MainActivity.btth_w.sendString("#1-2")
@@ -162,7 +160,7 @@ class JoystickActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     MainActivity.vibrate(this)
                     timer_cmd = Timer()
-                    timer_cmd.schedule(cmd_interval, cmd_interval) {
+                    timer_cmd.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                         when(speed){
                             1 -> MainActivity.btth_w.sendString("#2-1")
                             2 -> MainActivity.btth_w.sendString("#2-2")
@@ -180,7 +178,7 @@ class JoystickActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     MainActivity.vibrate(this)
                     timer_cmd = Timer()
-                    timer_cmd.schedule(cmd_interval, cmd_interval) {
+                    timer_cmd.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                         when(speed){
                             1 -> MainActivity.btth_w.sendString("#3-1")
                             2 -> MainActivity.btth_w.sendString("#3-2")
@@ -198,7 +196,7 @@ class JoystickActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     MainActivity.vibrate(this)
                     timer_cmd = Timer()
-                    timer_cmd.schedule(cmd_interval, cmd_interval) {
+                    timer_cmd.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                         when(speed){
                             1 -> MainActivity.btth_w.sendString("#4-1")
                             2 -> MainActivity.btth_w.sendString("#4-2")
@@ -216,7 +214,7 @@ class JoystickActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     MainActivity.vibrate(this)
                     timer_cmd = Timer()
-                    timer_cmd.schedule(cmd_interval, cmd_interval) {
+                    timer_cmd.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                         when(speed){
                             1 -> MainActivity.btth_w.sendString("#5-1")
                             2 -> MainActivity.btth_w.sendString("#5-2")
@@ -234,7 +232,7 @@ class JoystickActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     MainActivity.vibrate(this)
                     timer_cmd = Timer()
-                    timer_cmd.schedule(cmd_interval, cmd_interval) {
+                    timer_cmd.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                         when(speed){
                             1 -> MainActivity.btth_w.sendString("#6-1")
                             2 -> MainActivity.btth_w.sendString("#6-2")
