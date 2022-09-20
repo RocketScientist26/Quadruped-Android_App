@@ -7,8 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
@@ -17,6 +15,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import me.rocket_scientist.rsuielements.RsVertSlider
+import kotlin.concurrent.schedule
 import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -29,7 +28,9 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    //Settings data
+    //Local
+    private val cntxt = this
+    private var cm = 4
     private var m1 = 0
     private var m2 = 0
     private var m3 = 0
@@ -39,9 +40,6 @@ class SettingsActivity : AppCompatActivity() {
     private var m7 = 0
     private var m8 = 0
     private var led = 0
-
-    //State machine
-    private var cm = 4
 
     //UI
     private lateinit var slider: RsVertSlider
@@ -69,9 +67,6 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var button_save: ImageButton
     private lateinit var button_led: ImageButton
 
-    private fun vibrate() {
-        MainActivity.vibrate(this)
-    }
     private fun btnSelM() {
         button_m1.setImageResource(R.drawable.sa_sw_unsel)
         button_m2.setImageResource(R.drawable.sa_sw_unsel)
@@ -82,14 +77,38 @@ class SettingsActivity : AppCompatActivity() {
         button_m7.setImageResource(R.drawable.sa_sw_unsel)
         button_m8.setImageResource(R.drawable.sa_sw_unsel)
         when(cm){
-            1 -> button_m1.setImageResource(R.drawable.sa_sw_sel)
-            2 -> button_m2.setImageResource(R.drawable.sa_sw_sel)
-            3 -> button_m3.setImageResource(R.drawable.sa_sw_sel)
-            4 -> button_m4.setImageResource(R.drawable.sa_sw_sel)
-            5 -> button_m5.setImageResource(R.drawable.sa_sw_sel)
-            6 -> button_m6.setImageResource(R.drawable.sa_sw_sel)
-            7 -> button_m7.setImageResource(R.drawable.sa_sw_sel)
-            8 -> button_m8.setImageResource(R.drawable.sa_sw_sel)
+            1 -> {
+                button_m1.setImageResource(R.drawable.sa_sw_sel)
+                slider.progress = m1 + 9
+            }
+            2 -> {
+                button_m2.setImageResource(R.drawable.sa_sw_sel)
+                slider.progress = m2 + 9
+            }
+            3 -> {
+                button_m3.setImageResource(R.drawable.sa_sw_sel)
+                slider.progress = m3 + 9
+            }
+            4 -> {
+                button_m4.setImageResource(R.drawable.sa_sw_sel)
+                slider.progress = m4 + 9
+            }
+            5 -> {
+                button_m5.setImageResource(R.drawable.sa_sw_sel)
+                slider.progress = m5 + 9
+            }
+            6 -> {
+                button_m6.setImageResource(R.drawable.sa_sw_sel)
+                slider.progress = m6 + 9
+            }
+            7 -> {
+                button_m7.setImageResource(R.drawable.sa_sw_sel)
+                slider.progress = m7 + 9
+            }
+            8 -> {
+                button_m8.setImageResource(R.drawable.sa_sw_sel)
+                slider.progress = m8 + 9
+            }
         }
     }
     private fun btnSendM(){
@@ -160,7 +179,6 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
     }
-    private var timer = Timer()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -196,6 +214,7 @@ class SettingsActivity : AppCompatActivity() {
         button_led = findViewById(R.id.ImageButton_Led)
 
         slider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            private var sbtimer = Timer()
             private var level = 0
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, userAction: Boolean) {
                 level = progress - 9
@@ -236,10 +255,20 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                vibrate()
-                timer.cancel()
-                timer = Timer()
-                timer.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval){
+                MainActivity.vibrate(cntxt)
+                sbtimer.cancel()
+                when(cm){
+                    1 -> slider.progress = m1 + 9
+                    2 -> slider.progress = m2 + 9
+                    3 -> slider.progress = m3 + 9
+                    4 -> slider.progress = m4 + 9
+                    5 -> slider.progress = m5 + 9
+                    6 -> slider.progress = m6 + 9
+                    7 -> slider.progress = m7 + 9
+                    8 -> slider.progress = m8 + 9
+                }
+                sbtimer = Timer()
+                sbtimer.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
                     if(level < 0){
                         MainActivity.btth_w.sendString("#I$level$cm")
                     }else{
@@ -259,11 +288,13 @@ class SettingsActivity : AppCompatActivity() {
                     7 -> slider.progress = m7 + 9
                     8 -> slider.progress = m8 + 9
                 }
-                if (mHandler != null) {
-                    mHandler!!.removeCallbacks(mAction)
-                    mHandler = null
+                sbtimer.cancel()
+                MainActivity.flash_store_rq = true
+                if(level < 0){
+                    MainActivity.btth_w.sendString("#I$level$cm")
+                }else{
+                    MainActivity.btth_w.sendString("#I+$level$cm")
                 }
-                MainActivity.btth_w.sendString("#G")
             }
         })
 
@@ -271,7 +302,7 @@ class SettingsActivity : AppCompatActivity() {
         val touchVibr = View.OnTouchListener{ v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    vibrate()
+                    MainActivity.vibrate(this)
                 }
             }
             v?.onTouchEvent(event) ?: true
@@ -303,6 +334,7 @@ class SettingsActivity : AppCompatActivity() {
             }
             MainActivity.flash_store_rq = true
             btnSendM()
+            btnSelM()
         }
         button_dec.setOnClickListener{
             when(cm){
@@ -317,6 +349,7 @@ class SettingsActivity : AppCompatActivity() {
             }
             MainActivity.flash_store_rq = true
             btnSendM()
+            btnSelM()
         }
         button_m1.setOnClickListener{
             cm = 1
@@ -428,6 +461,9 @@ class SettingsActivity : AppCompatActivity() {
                 }
                 i += 2
             }
+
+            //Slider
+            slider.progress = m1 + 9
 
             //Password
             i = data.indexOf(" ", 18)

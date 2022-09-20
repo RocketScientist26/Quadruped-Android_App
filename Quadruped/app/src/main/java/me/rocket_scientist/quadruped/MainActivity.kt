@@ -60,7 +60,6 @@ import me.rocket_scientist.rsbt.RsBtWriteThread
 import java.util.*
 import kotlin.concurrent.schedule
 
-
 class MainActivity : AppCompatActivity() {
     //Global
     companion object{
