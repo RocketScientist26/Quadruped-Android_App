@@ -263,14 +263,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.409" />
+            app:layout_constraintGuide_percent="0.445" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline48"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.040" />
+            app:layout_constraintGuide_percent="0.0064" />
 
 
         <ImageButton
@@ -379,19 +379,16 @@
             app:layout_constraintTop_toTopOf="@+id/guideline6"
             tools:ignore="RedundantDescriptionCheck" />
 
-        <!-- <io.github.controlwear.virtual.joystick.android.JoystickView
-            android:id="@+id/joystickViewL"
+        <me.rocket_scientist.rsuielements.RsAngleStick
+            android:id="@+id/RsAngleStick_Left"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_alignParentBottom="true"
-            app:JV_buttonImage="@drawable/joystick_button"
-            app:JV_buttonSizeRatio="40.2%"
-            app:JV_fixedCenter="true"
-            app:JV_rightAligned="false"
+            app:RsAngleStick_ButtonImage="@drawable/ja_stick"
+            app:RsAngleStick_ButtonSizeRatio="40.2%"
             app:layout_constraintBottom_toTopOf="@+id/guideline32"
             app:layout_constraintEnd_toStartOf="@+id/guideline31"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="@+id/guideline2" />-->
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <TextView
             android:id="@+id/TextView_Cmd"
@@ -422,19 +419,19 @@
             app:layout_constraintTop_toTopOf="@+id/guideline44"
             tools:ignore="contentDescription" />
 
-        <!--<me.rocket_scientist.quadruped.VerticalSeekbarClass
-            android:id="@+id/accelerate_seekbar"
+        <me.rocket_scientist.rsuielements.RsVertSlider
+            android:id="@+id/RsVertSlider_Accelerator"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@null"
             android:max="80"
             android:progress="0"
             android:progressDrawable="@null"
-            android:thumb="@drawable/joystick_acc_button"
+            android:thumb="@drawable/ja_acc"
             app:layout_constraintBottom_toTopOf="@+id/guideline47"
             app:layout_constraintEnd_toStartOf="@+id/guideline46"
             app:layout_constraintStart_toStartOf="@+id/guideline45"
-            app:layout_constraintTop_toTopOf="@+id/guideline48" />-->
+            app:layout_constraintTop_toTopOf="@+id/guideline48" />
 
         <!-- -->
         <androidx.constraintlayout.widget.Guideline

@@ -410,7 +410,7 @@ class RsAngleStick @JvmOverloads constructor(context: Context, attrs: AttributeS
     init {
         val styledAttributes: TypedArray = context.theme.obtainStyledAttributes(
             attrs,
-            R.styleable.JoystickView,
+            R.styleable.RsAngleStick,
             0, 0
         )
         val buttonColor: Int
@@ -419,64 +419,24 @@ class RsAngleStick @JvmOverloads constructor(context: Context, attrs: AttributeS
         val borderWidth: Int
         val buttonDrawable: Drawable?
         try {
-            buttonColor = styledAttributes.getColor(
-                R.styleable.JoystickView_JV_buttonColor,
-                DEFAULT_COLOR_BUTTON
-            )
-            borderColor = styledAttributes.getColor(
-                R.styleable.JoystickView_JV_borderColor,
-                DEFAULT_COLOR_BORDER
-            )
-            backgroundColor = styledAttributes.getColor(
-                R.styleable.JoystickView_JV_backgroundColor,
-                DEFAULT_BACKGROUND_COLOR
-            )
-            borderWidth = styledAttributes.getDimensionPixelSize(
-                R.styleable.JoystickView_JV_borderWidth,
-                DEFAULT_WIDTH_BORDER
-            )
-            mFixedCenter = styledAttributes.getBoolean(
-                R.styleable.JoystickView_JV_fixedCenter,
-                DEFAULT_FIXED_CENTER
-            )
             mRightAligned = styledAttributes.getBoolean(
-                R.styleable.JoystickView_JV_rightAligned,
+                R.styleable.RsAngleStick_RsAngleStick_Enabled_RightAligned,
                 DEFAULT_RIGHT_ALIGNED
             )
-            isAutoReCenterButton = styledAttributes.getBoolean(
-                R.styleable.JoystickView_JV_autoReCenterButton,
-                DEFAULT_AUTO_RECENTER_BUTTON
-            )
-            isButtonStickToBorder = styledAttributes.getBoolean(
-                R.styleable.JoystickView_JV_buttonStickToBorder,
-                DEFAULT_BUTTON_STICK_TO_BORDER
-            )
-            buttonDrawable = styledAttributes.getDrawable(R.styleable.JoystickView_JV_buttonImage)
-            mEnabled = styledAttributes.getBoolean(R.styleable.JoystickView_JV_enabled, true)
+            buttonDrawable = styledAttributes.getDrawable(R.styleable.RsAngleStick_RsAngleStick_ButtonImage)
+            mEnabled = styledAttributes.getBoolean(R.styleable.RsAngleStick_RsAngleStick_Enabled, true)
             mButtonSizeRatio = styledAttributes.getFraction(
-                R.styleable.JoystickView_JV_buttonSizeRatio,
+                R.styleable.RsAngleStick_RsAngleStick_ButtonSizeRatio,
                 1,
                 1,
                 0.25f
-            )
-            mBackgroundSizeRatio = styledAttributes.getFraction(
-                R.styleable.JoystickView_JV_backgroundSizeRatio,
-                1,
-                1,
-                0.75f
-            )
-            buttonDirection = styledAttributes.getInteger(
-                R.styleable.JoystickView_JV_buttonDirection,
-                BUTTON_DIRECTION_BOTH
             )
         } finally {
             styledAttributes.recycle()
         }
 
-        // Initialize the drawing according to attributes
         mPaintCircleButton = Paint()
         mPaintCircleButton.isAntiAlias = true
-        mPaintCircleButton.color = buttonColor
         mPaintCircleButton.style = Paint.Style.FILL
         if (buttonDrawable != null) {
             if (buttonDrawable is BitmapDrawable) {
@@ -486,16 +446,11 @@ class RsAngleStick @JvmOverloads constructor(context: Context, attrs: AttributeS
         }
         mPaintCircleBorder = Paint()
         mPaintCircleBorder.isAntiAlias = true
-        mPaintCircleBorder.color = borderColor
         mPaintCircleBorder.style = Paint.Style.STROKE
-        mPaintCircleBorder.strokeWidth = borderWidth.toFloat()
         mPaintBackground = Paint()
         mPaintBackground.isAntiAlias = true
-        mPaintBackground.color = backgroundColor
         mPaintBackground.style = Paint.Style.FILL
 
-
-        // Init Runnable for MultiLongPress
         mRunnableMultipleLongPress = object : Runnable {
             override fun run() {
                 if (mOnMultipleLongPressListener != null) mOnMultipleLongPressListener!!.onMultipleLongPress()
