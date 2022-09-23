@@ -1,31 +1,26 @@
 package me.rocket_scientist.quadruped
 
-import android.Manifest.permission.RECORD_AUDIO
-import android.R
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.speech.RecognitionListener
-import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import me.rocket_scientist.rsuielements.RsAngleStick
 import me.rocket_scientist.rsuielements.RsVertSlider
 import java.util.*
 import kotlin.concurrent.schedule
@@ -44,8 +39,6 @@ class JoystickActivity : AppCompatActivity() {
             }
         }
     }
-    //Tilt angle
-    private var tiltangle: Double = 0.0
     //Speed
     private var speed = 1
     //Command sending timer
@@ -72,6 +65,13 @@ class JoystickActivity : AppCompatActivity() {
     private lateinit var button_settings: ImageButton
     private lateinit var slider_acc: RsVertSlider
     private lateinit var text_cmd: TextView
+    private lateinit var anglestick_left: RsAngleStick
+    //Private
+    private var tiltangle: Double = 0.0
+    private var acc_level = 0
+    private var stickangle: Int = 0
+    private var stickstrength: Int = 0
+    private val cntxt = this
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +99,7 @@ class JoystickActivity : AppCompatActivity() {
         image_tilt = findViewById(R.id.ImageView_Tilt)
         slider_acc = findViewById(R.id.RsVertSlider_Accelerator)
         text_cmd = findViewById(R.id.TextView_Cmd)
+        anglestick_left = findViewById(R.id.RsAngleStick_Left)
 
         //Enable button clicks
         button_swim_d1.setOnTouchListener{ v, event ->
@@ -337,7 +338,78 @@ class JoystickActivity : AppCompatActivity() {
         )
 
         //Accelerator
-        //!TBD
+        slider_acc.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            private var sbtimer = Timer()
+
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, userAction: Boolean) {
+                acc_level = progress
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                MainActivity.vibrate(cntxt)
+                sbtimer.cancel()
+                sbtimer = Timer()
+                sbtimer.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
+                    MainActivity.btth_w.sendString("#K" + String.format("%03d", tiltangle) + "-" + String.format("%02d", acc_level))
+                }
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                sbtimer.cancel()
+                acc_level = 0
+                slider_acc.progress = acc_level
+            }
+
+        })
+
+        //AngleStick
+        anglestick_left.setOnMoveListener(object : RsAngleStick.OnMoveListener {
+
+            override fun onMove(angle: Int, strength: Int) {
+                var tmpangle = 0
+                tmpangle = if (angle == 0) {
+                    360
+                } else {
+                    angle
+                }
+                tmpangle = 360 - tmpangle
+                if (tmpangle > 90) {
+                    tmpangle = 90
+                } else if (tmpangle < 1) {
+                    tmpangle = 0
+                }
+                var tmpstrength = strength
+                if (tmpstrength > 80) {
+                    tmpstrength = 80
+                } else if (tmpstrength < 1) {
+                    tmpstrength = 0
+                }
+
+                stickstrength = tmpstrength
+                stickangle = tmpangle
+            }
+
+        })
+
+        anglestick_left.setOnTouchListener(object : View.OnTouchListener {
+            private var sbtimer = Timer()
+
+            override fun onTouch(view: View?, event: MotionEvent): Boolean {
+                if (event.action == MotionEvent.ACTION_DOWN) {
+                    MainActivity.vibrate(cntxt)
+                    sbtimer.cancel()
+                    sbtimer = Timer()
+                    sbtimer.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
+                        MainActivity.btth_w.sendString("#L" + String.format("%02d", stickangle) + "-" + String.format("%02d", stickstrength))
+                    }
+                }
+                if (event.action == MotionEvent.ACTION_UP) {
+                    sbtimer.cancel()
+                }
+                return false
+            }
+
+        })
 
         //Voice commands
         /*speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
@@ -407,9 +479,9 @@ class JoystickActivity : AppCompatActivity() {
     }
 
     //Voice commands
-/*    var commandtmp = 0
+    var commandtmp = 0
 
-    protected class SpeechRecognitionListener : RecognitionListener {
+    /*protected class SpeechRecognitionListener : RecognitionListener {
         override fun onBeginningOfSpeech() {
             //DebugTxt.setText("Begining");
         }
@@ -459,7 +531,7 @@ class JoystickActivity : AppCompatActivity() {
 
         override fun onEvent(eventType: Int, params: Bundle) {}
         override fun onPartialResults(partialResults: Bundle) {
-            /*ArrayList<String> matches = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            ArrayList<String> matches = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             String ttext = "";
             int msize = matches.size();
             int i = 0;
@@ -468,7 +540,7 @@ class JoystickActivity : AppCompatActivity() {
                 ttext = ttext.concat(" ");
                 i++;
             }
-            DebugTxt.setText(ttext);*/
+            DebugTxt.setText(ttext);
             //DebugTxt.setText("Partial Results");
         }
 
@@ -587,8 +659,8 @@ class JoystickActivity : AppCompatActivity() {
         }
 
         override fun onRmsChanged(rmsdB: Float) {}
-    }
-*/
+    }*/
+
     private fun setCmdText(color: Boolean, txt: String) {
         if (color) {
             text_cmd.setTextColor(Color.parseColor("#ffffff"))
