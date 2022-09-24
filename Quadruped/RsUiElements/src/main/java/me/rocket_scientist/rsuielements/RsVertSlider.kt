@@ -36,8 +36,12 @@ class RsVertSlider : AppCompatSeekBar {
     }
 
     override fun setProgress(progress: Int) {
-        onSizeChanged(width, height, 0, 0)
         super.setProgress(progress)
+        onSizeChanged(width, height, 0, 0)
+        if(last_progress != progress) {
+            last_progress = progress;
+            onChangeListener?.onProgressChanged(this, progress, true)
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")

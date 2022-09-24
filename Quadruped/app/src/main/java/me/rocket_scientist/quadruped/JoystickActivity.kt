@@ -350,7 +350,7 @@ class JoystickActivity : AppCompatActivity() {
                 sbtimer.cancel()
                 sbtimer = Timer()
                 sbtimer.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
-                    MainActivity.btth_w.sendString("#K" + String.format("%03d", tiltangle) + "-" + String.format("%02d", acc_level))
+                    MainActivity.btth_w.sendString("#K" + String.format("%03d", tiltangle.toInt()) + "-" + String.format("%02d", acc_level))
                 }
             }
 

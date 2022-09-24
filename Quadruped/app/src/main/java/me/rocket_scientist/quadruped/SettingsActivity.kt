@@ -463,7 +463,7 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             //Slider
-            slider.progress = m1 + 9
+            slider.progress = m4 + 9
 
             //Password
             i = data.indexOf(" ", 18)
