@@ -366,27 +366,8 @@ class JoystickActivity : AppCompatActivity() {
         anglestick_left.setOnMoveListener(object : RsAngleStick.OnMoveListener {
 
             override fun onMove(angle: Int, strength: Int) {
-                var tmpangle = 0
-                tmpangle = if (angle == 0) {
-                    360
-                } else {
-                    angle
-                }
-                tmpangle = 360 - tmpangle
-                if (tmpangle > 90) {
-                    tmpangle = 90
-                } else if (tmpangle < 1) {
-                    tmpangle = 0
-                }
-                var tmpstrength = strength
-                if (tmpstrength > 80) {
-                    tmpstrength = 80
-                } else if (tmpstrength < 1) {
-                    tmpstrength = 0
-                }
-
-                stickstrength = tmpstrength
-                stickangle = tmpangle
+                stickstrength = strength
+                stickangle = angle
             }
 
         })

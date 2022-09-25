@@ -2,8 +2,6 @@
 <resources>
     <declare-styleable name="RsAngleStick">
         <attr name="RsAngleStick_ButtonImage" format="reference" />
-        <attr name="RsAngleStick_Enabled" format="boolean"/>
         <attr name="RsAngleStick_ButtonSizeRatio" format="fraction"/>
-        <attr name="RsAngleStick_Enabled_RightAligned" format="boolean"/>
     </declare-styleable>
 </resources>
