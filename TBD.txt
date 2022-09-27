@@ -1,0 +1,19 @@
+ToDo list:
+
+#1
+- RsAngleStick.kt
+- line 95
+X Margins are not perfect circle
+> Correct math
+
+#2
+- activity_settings.xml / activity_joystick.xml
+- line 494 / 422
+X On phones with very small screen slider thumb image does not fit in space (as provided by android it scales up but does not scales down)
+> Provide "sa_slider" drawables for each DPI for "android:thumb"
+
+#3
+- activity_settings.xml
+- "TextViev"s TextView_MVal1 to TextView_MVal8
+X On phones with very small screen text does not fit in perfectly
+> Increase enclosing horizontal guidelines distance by 25%

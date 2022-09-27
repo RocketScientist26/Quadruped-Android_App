@@ -1,4 +1,5 @@
 # Quadruped Android App
 
-Android Studio Kotlin project for Quadruped robot
-- Please note, for Voice Commands to work, you need internet connection or downloaded english offline text to speech dictionary in Android
+Android Studio Kotlin project for Quadruped Robot
+- RsUiElements module available in sources can be directly used in other projects by just importing
+- RsBt module as separate project (comes with demo app) [HERE](https://codeberg.org/Rocket-Scientist/Android_Bluetooth_Library_-_RsBt)
