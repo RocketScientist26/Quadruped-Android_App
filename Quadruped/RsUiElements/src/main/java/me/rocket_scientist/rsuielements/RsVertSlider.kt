@@ -39,7 +39,7 @@ class RsVertSlider : AppCompatSeekBar {
         super.setProgress(progress)
         onSizeChanged(width, height, 0, 0)
         if(last_progress != progress) {
-            last_progress = progress;
+            last_progress = progress
             onChangeListener?.onProgressChanged(this, progress, true)
         }
     }

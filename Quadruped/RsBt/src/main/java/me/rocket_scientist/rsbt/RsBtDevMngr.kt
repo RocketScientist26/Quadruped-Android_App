@@ -17,7 +17,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import java.lang.reflect.Method
 import kotlin.system.exitProcess
 
 open class RsBtDevMngr(private val activity: AppCompatActivity){

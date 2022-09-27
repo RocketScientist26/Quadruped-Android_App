@@ -30,6 +30,8 @@ import me.rocket_scientist.rsuielements.RsAngleStick
 import me.rocket_scientist.rsuielements.RsVertSlider
 import java.util.*
 import kotlin.concurrent.schedule
+import kotlin.math.PI
+import kotlin.math.atan2
 
 
 class JoystickActivity : AppCompatActivity() {
@@ -49,7 +51,7 @@ class JoystickActivity : AppCompatActivity() {
     private var speed = 1
     //Command sending timer
     private var timer_cmd = Timer()
-    //Settings responce timeout timer
+    //Settings response timeout timer
     private var timer_sett = Timer()
     //Voice commands
     private lateinit var speech_recognizer: SpeechRecognizer
@@ -314,7 +316,7 @@ class JoystickActivity : AppCompatActivity() {
             override fun onSensorChanged(mSensorEvent: SensorEvent) {
                 val X_Axis = mSensorEvent.values[0]
                 val Y_Axis = mSensorEvent.values[1]
-                var angle = Math.atan2(X_Axis.toDouble(), Y_Axis.toDouble()) / (Math.PI / 180)
+                var angle = atan2(X_Axis.toDouble(), Y_Axis.toDouble()) / (PI / 180)
                 if (angle < 0) {
                     angle = if (angle > -90) {
                         0.0
@@ -405,38 +407,42 @@ class JoystickActivity : AppCompatActivity() {
         val speech_listener = SpeechRecognitionListener()
         speech_recognizer.setRecognitionListener(speech_listener)
 
-        button_cmd.setOnTouchListener(object : View.OnTouchListener {
-
-            override fun onTouch(view: View?, event: MotionEvent): Boolean {
-
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        if (ContextCompat.checkSelfPermission(cntxt, RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-                            ActivityCompat.requestPermissions(cntxt, arrayOf(RECORD_AUDIO), 124 )
-                        } else {
-                            MainActivity.vibrate(cntxt)
-                            speech_recognizer.cancel()
-                            speech_recognizer.stopListening()
-                            speech_recognizer.startListening(speech_recognizer_intent)
-                        }
-                    }
-                    MotionEvent.ACTION_UP -> if (ContextCompat.checkSelfPermission(cntxt, RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+        button_cmd.setOnTouchListener { view, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    if (ContextCompat.checkSelfPermission(
+                            cntxt,
+                            RECORD_AUDIO
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
                         ActivityCompat.requestPermissions(cntxt, arrayOf(RECORD_AUDIO), 124)
                     } else {
+                        MainActivity.vibrate(cntxt)
                         speech_recognizer.cancel()
                         speech_recognizer.stopListening()
-                        setCmdText(true, "")
-                        speech_listener.sptimer.cancel()
+                        speech_recognizer.startListening(speech_recognizer_intent)
                     }
                 }
-
-                return false
+                MotionEvent.ACTION_UP -> if (ContextCompat.checkSelfPermission(
+                        cntxt,
+                        RECORD_AUDIO
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    ActivityCompat.requestPermissions(cntxt, arrayOf(RECORD_AUDIO), 124)
+                } else {
+                    speech_recognizer.cancel()
+                    speech_recognizer.stopListening()
+                    setCmdText(true, "")
+                    speech_listener.sptimer.cancel()
+                }
             }
 
-        })
+            false
+        }
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         setResult(Activity.RESULT_OK)
         finish()
@@ -453,47 +459,64 @@ class JoystickActivity : AppCompatActivity() {
 
         override fun onError(error: Int) {
             if (button_cmd.isPressed) {
-                if (error == SpeechRecognizer.ERROR_NETWORK || error == SpeechRecognizer.ERROR_NETWORK_TIMEOUT || error == SpeechRecognizer.ERROR_SERVER) {
-                    speech_recognizer.cancel()
-                    speech_recognizer.stopListening()
-                    speech_recognizer.startListening(speech_recognizer_intent)
-                } else if (error == SpeechRecognizer.ERROR_RECOGNIZER_BUSY) {
-                    speech_recognizer.cancel()
-                    speech_recognizer.stopListening()
-                    speech_recognizer.startListening(speech_recognizer_intent)
-                } else if (error == SpeechRecognizer.ERROR_CLIENT) {
-                    //!UNUSED
-                } else if (error == SpeechRecognizer.ERROR_AUDIO) {
-                    //!UNUSED
-                } else if (error == SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS) {
-                    //!UNUSED
-                } else if (error == SpeechRecognizer.ERROR_NO_MATCH || error == SpeechRecognizer.ERROR_SPEECH_TIMEOUT) {
-                    speech_recognizer.cancel()
-                    speech_recognizer.stopListening()
-                    speech_recognizer.startListening(speech_recognizer_intent)
+                when (error) {
+                    SpeechRecognizer.ERROR_NETWORK, SpeechRecognizer.ERROR_NETWORK_TIMEOUT, SpeechRecognizer.ERROR_SERVER -> {
+                        speech_recognizer.cancel()
+                        speech_recognizer.stopListening()
+                        speech_recognizer.startListening(speech_recognizer_intent)
+                    }
+                    SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> {
+                        speech_recognizer.cancel()
+                        speech_recognizer.stopListening()
+                        speech_recognizer.startListening(speech_recognizer_intent)
+                    }
+                    SpeechRecognizer.ERROR_CLIENT -> {
+                        //!UNUSED
+                    }
+                    SpeechRecognizer.ERROR_AUDIO -> {
+                        //!UNUSED
+                    }
+                    SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> {
+                        //!UNUSED
+                    }
+                    SpeechRecognizer.ERROR_NO_MATCH, SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> {
+                        speech_recognizer.cancel()
+                        speech_recognizer.stopListening()
+                        speech_recognizer.startListening(speech_recognizer_intent)
+                    }
                 }
             }
         }
 
         private fun SendCmd(commandId: Int) {
-            if (commandId == 2 || commandId == 3 || commandId == 4) {
-                MainActivity.btth_w.sendString("#1" + "-" + String.format("%01d", speed))
-            } else if (commandId == 5) {
-                MainActivity.btth_w.sendString("#2" + "-" + String.format("%01d", speed))
-            } else if (commandId == 6) {
-                MainActivity.btth_w.sendString("#3" + "-" + String.format("%01d", speed))
-            } else if (commandId == 7) {
-                MainActivity.btth_w.sendString("#4" + "-" + String.format("%01d", speed))
-            } else if (commandId == 8) {
-                MainActivity.btth_w.sendString("#5" + "-" + String.format("%01d", speed))
-            } else if (commandId == 9) {
-                MainActivity.btth_w.sendString("#6" + "-" + String.format("%01d", speed))
-            } else if (commandId == 10) {
-                MainActivity.btth_w.sendString("#D1")
-            } else if (commandId == 11) {
-                MainActivity.btth_w.sendString("#D2")
-            } else if (commandId == 12) {
-                MainActivity.btth_w.sendString("#D3")
+            when (commandId) {
+                2, 3, 4 -> {
+                    MainActivity.btth_w.sendString("#1" + "-" + String.format("%01d", speed))
+                }
+                5 -> {
+                    MainActivity.btth_w.sendString("#2" + "-" + String.format("%01d", speed))
+                }
+                6 -> {
+                    MainActivity.btth_w.sendString("#3" + "-" + String.format("%01d", speed))
+                }
+                7 -> {
+                    MainActivity.btth_w.sendString("#4" + "-" + String.format("%01d", speed))
+                }
+                8 -> {
+                    MainActivity.btth_w.sendString("#5" + "-" + String.format("%01d", speed))
+                }
+                9 -> {
+                    MainActivity.btth_w.sendString("#6" + "-" + String.format("%01d", speed))
+                }
+                10 -> {
+                    MainActivity.btth_w.sendString("#D1")
+                }
+                11 -> {
+                    MainActivity.btth_w.sendString("#D2")
+                }
+                12 -> {
+                    MainActivity.btth_w.sendString("#D3")
+                }
             }
         }
 
@@ -532,23 +555,31 @@ class JoystickActivity : AppCompatActivity() {
                         if (speed < 3) {
                             speed++
                         }
-                        if (speed == 1) {
-                            button_speed.setImageResource(R.drawable.ja_speed_1)
-                        } else if (speed == 2) {
-                            button_speed.setImageResource(R.drawable.ja_speed_2)
-                        } else if (speed == 3) {
-                            button_speed.setImageResource(R.drawable.ja_speed_3)
+                        when (speed) {
+                            1 -> {
+                                button_speed.setImageResource(R.drawable.ja_speed_1)
+                            }
+                            2 -> {
+                                button_speed.setImageResource(R.drawable.ja_speed_2)
+                            }
+                            3 -> {
+                                button_speed.setImageResource(R.drawable.ja_speed_3)
+                            }
                         }
                     } else if (i == 15 || i == 16) {
                         if (speed > 1) {
                             speed--
                         }
-                        if (speed == 1) {
-                            button_speed.setImageResource(R.drawable.ja_speed_1)
-                        } else if (speed == 2) {
-                            button_speed.setImageResource(R.drawable.ja_speed_2)
-                        } else if (speed == 3) {
-                            button_speed.setImageResource(R.drawable.ja_speed_3)
+                        when (speed) {
+                            1 -> {
+                                button_speed.setImageResource(R.drawable.ja_speed_1)
+                            }
+                            2 -> {
+                                button_speed.setImageResource(R.drawable.ja_speed_2)
+                            }
+                            3 -> {
+                                button_speed.setImageResource(R.drawable.ja_speed_3)
+                            }
                         }
                     } else {
                         current_cmd = i
@@ -590,6 +621,6 @@ class JoystickActivity : AppCompatActivity() {
             text_cmd.setTextColor(Color.parseColor("#ffaaaa"))
             text_cmd.setShadowLayer(12f, 0f, 0f, Color.parseColor("#ff1d1d"))
         }
-        text_cmd.setText(txt)
+        text_cmd.text = txt
     }
 }

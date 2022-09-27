@@ -428,36 +428,45 @@ class SettingsActivity : AppCompatActivity() {
             val data = intent.getStringExtra("CONFIG").toString()
             //Calibration data
             var i = 0
-            var res = 0
+            var res: Int
             while (i < 16) {
                 res = data.elementAt(i + 3).code - 48
                 if (data.elementAt(i + 2) == '-') {
                     res -= 2 * res
                 }
-                if (i == 0) {
-                    m1 = res
-                    text_m1.text = m1.toString()
-                } else if (i == 2) {
-                    m2 = res
-                    text_m2.text = m2.toString()
-                } else if (i == 4) {
-                    m3 = res
-                    text_m3.text = m3.toString()
-                } else if (i == 6) {
-                    m4 = res
-                    text_m4.text = m4.toString()
-                } else if (i == 8) {
-                    m5 = res
-                    text_m5.text = m5.toString()
-                } else if (i == 10) {
-                    m6 = res
-                    text_m6.text = m6.toString()
-                } else if (i == 12) {
-                    m7 = res
-                    text_m7.text = m7.toString()
-                } else if (i == 14) {
-                    m8 = res
-                    text_m8.text = m8.toString()
+                when (i) {
+                    0 -> {
+                        m1 = res
+                        text_m1.text = m1.toString()
+                    }
+                    2 -> {
+                        m2 = res
+                        text_m2.text = m2.toString()
+                    }
+                    4 -> {
+                        m3 = res
+                        text_m3.text = m3.toString()
+                    }
+                    6 -> {
+                        m4 = res
+                        text_m4.text = m4.toString()
+                    }
+                    8 -> {
+                        m5 = res
+                        text_m5.text = m5.toString()
+                    }
+                    10 -> {
+                        m6 = res
+                        text_m6.text = m6.toString()
+                    }
+                    12 -> {
+                        m7 = res
+                        text_m7.text = m7.toString()
+                    }
+                    14 -> {
+                        m8 = res
+                        text_m8.text = m8.toString()
+                    }
                 }
                 i += 2
             }
@@ -481,13 +490,12 @@ class SettingsActivity : AppCompatActivity() {
                 edit_text_name.setText(data.substring(22,i))
             }
             //LED
-            if(data.elementAt(32) == '1'){
+            led = if(data.elementAt(32) == '1'){
                 button_led.setImageResource(R.drawable.sa_led_checked)
-                led = 1
-            }
-            else{
+                1
+            } else{
                 button_led.setImageResource(R.drawable.sa_led_unchecked)
-                led = 0
+                0
             }
         }else{
             setResult(Activity.RESULT_CANCELED)
@@ -495,6 +503,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         MainActivity.btth_w.sendString("#H")
         finish()

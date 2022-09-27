@@ -1,5 +1,6 @@
 package me.rocket_scientist.rsuielements
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Bitmap
@@ -82,6 +83,7 @@ class RsAngleStick (context: Context, attrs: AttributeSet? = null) : View(contex
         setMeasuredDimension(d, d)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (!isEnabled) {
             return true
@@ -94,8 +96,8 @@ class RsAngleStick (context: Context, attrs: AttributeSet? = null) : View(contex
         val angle = atan2((y - button_radius).toDouble(), (x - button_radius).toDouble())
         val dist = sqrt(x.toFloat().pow(2) + y.toFloat().pow(2))
         if (dist > border_radius) {
-            x = (border_radius * cos(angle)).toInt()
-            y = (border_radius * sin(angle)).toInt()
+            x = (border_radius * kotlin.math.cos(angle)).toInt()
+            y = (border_radius * kotlin.math.sin(angle)).toInt()
         }
 
         if(x < button_radius){
@@ -107,13 +109,13 @@ class RsAngleStick (context: Context, attrs: AttributeSet? = null) : View(contex
 
         when(event.action){
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                isPressed = false;
+                isPressed = false
                 x = button_radius
                 y = button_radius
                 if (on_move_callback != null) on_move_callback!!.onMove(angle(), strength())
             }
             MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
-                isPressed = true;
+                isPressed = true
                 if (on_move_callback != null) on_move_callback!!.onMove(angle(), strength())
             }
         }

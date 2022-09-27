@@ -66,9 +66,9 @@ class MainActivity : AppCompatActivity() {
         //State machine for external StoreToFlash command
         var flash_store_rq = false
         //Command responce timeout
-        val cmd_timeout_ms: Long = 500
+        const val cmd_timeout_ms: Long = 500
         //Command sending interval
-        val cmd_interval: Long = 100
+        const val cmd_interval: Long = 100
 
         lateinit var btth_w: RsBtWriteThread
 
@@ -89,14 +89,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Other pages
-    lateinit var SettingsIntent: Intent
-    var SettingsIntentCloseEvent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
+    private lateinit var SettingsIntent: Intent
+    private var SettingsIntentCloseEvent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
         if(result.resultCode == Activity.RESULT_CANCELED){
             disconnect()
         }
     }
-    lateinit var JoystickIntent: Intent
-    var JoystickIntentCloseEvent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
+    private lateinit var JoystickIntent: Intent
+    private var JoystickIntentCloseEvent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
         if(result.resultCode == Activity.RESULT_OK){
             disconnect()
         }
@@ -340,7 +340,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //ETC
-    fun disconnect(){
+    private fun disconnect(){
         if (::btconmngr.isInitialized) {
             if (btconmngr.isConnected()) {
                 conn_disconn_rq = true
@@ -372,9 +372,9 @@ class MainActivity : AppCompatActivity() {
         button_exit = findViewById(R.id.ImageButton_Exit)
 
         //Button vibrations
-        val btnsOnTouch = View.OnTouchListener(){ v, event ->
+        val btnsOnTouch = View.OnTouchListener{ v, event ->
             when (event?.action) {
-                MotionEvent.ACTION_DOWN -> MainActivity.vibrate(this)
+                MotionEvent.ACTION_DOWN -> vibrate(this)
             }
             v?.onTouchEvent(event) ?: true
         }
