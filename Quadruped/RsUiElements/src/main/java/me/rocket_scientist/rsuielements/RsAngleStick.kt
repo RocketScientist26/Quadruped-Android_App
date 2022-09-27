@@ -27,7 +27,8 @@ class RsAngleStick (context: Context, attrs: AttributeSet? = null) : View(contex
 
     //External
     private var button_paint: Paint? = null
-    private var button_bitmap: Bitmap? = null
+    private var button_bitmap_d: Bitmap? = null
+    private var button_bitmap_u: Bitmap? = null
     private var button_size_ratio: Float = 0.25f
     private var on_move_callback: OnMoveListener? = null
 
@@ -48,8 +49,14 @@ class RsAngleStick (context: Context, attrs: AttributeSet? = null) : View(contex
 
     //Events
     override fun onDraw(canvas: Canvas) {
-        if (button_bitmap != null) {
-            canvas.drawBitmap( button_bitmap!!, (x - button_radius).toFloat(), (y - button_radius).toFloat(), button_paint )
+        if(isPressed || !isEnabled){
+            if (button_bitmap_d != null) {
+                canvas.drawBitmap( button_bitmap_d!!, (x - button_radius).toFloat(), (y - button_radius).toFloat(), button_paint )
+            }
+        }else{
+            if (button_bitmap_u != null) {
+                canvas.drawBitmap( button_bitmap_u!!, (x - button_radius).toFloat(), (y - button_radius).toFloat(), button_paint )
+            }
         }
     }
 
@@ -61,8 +68,12 @@ class RsAngleStick (context: Context, attrs: AttributeSet? = null) : View(contex
         border_radius = d - button_radius
         x = button_radius
         y = button_radius
-        if (button_bitmap != null){
-            button_bitmap = Bitmap.createScaledBitmap( button_bitmap!!, button_radius * 2, button_radius * 2, true )
+
+        if (button_bitmap_d != null){
+            button_bitmap_d = Bitmap.createScaledBitmap( button_bitmap_d!!, button_radius * 2, button_radius * 2, true )
+        }
+        if (button_bitmap_u != null){
+            button_bitmap_u = Bitmap.createScaledBitmap( button_bitmap_u!!, button_radius * 2, button_radius * 2, true )
         }
     }
 
@@ -72,14 +83,14 @@ class RsAngleStick (context: Context, attrs: AttributeSet? = null) : View(contex
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (!this.isEnabled) {
+        if (!isEnabled) {
             return true
         }
 
         x = event.x.toInt()
         y = event.y.toInt()
 
-        //!TBD
+        //!TBD Slightly wrong math here
         val angle = atan2((y - button_radius).toDouble(), (x - button_radius).toDouble())
         val dist = sqrt(x.toFloat().pow(2) + y.toFloat().pow(2))
         if (dist > border_radius) {
@@ -96,11 +107,13 @@ class RsAngleStick (context: Context, attrs: AttributeSet? = null) : View(contex
 
         when(event.action){
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                isPressed = false;
                 x = button_radius
                 y = button_radius
                 if (on_move_callback != null) on_move_callback!!.onMove(angle(), strength())
             }
             MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
+                isPressed = true;
                 if (on_move_callback != null) on_move_callback!!.onMove(angle(), strength())
             }
         }
@@ -111,17 +124,22 @@ class RsAngleStick (context: Context, attrs: AttributeSet? = null) : View(contex
 
     init {
         val styledAttributes: TypedArray = context.theme.obtainStyledAttributes( attrs, R.styleable.RsAngleStick, 0, 0 )
-        val buttonDrawable: Drawable?
+        val buttonDrawableD: Drawable?
+        val buttonDrawableU: Drawable?
         try {
-            buttonDrawable = styledAttributes.getDrawable(R.styleable.RsAngleStick_RsAngleStick_ButtonImage)
+            buttonDrawableD = styledAttributes.getDrawable(R.styleable.RsAngleStick_RsAngleStick_ButtonImageD)
+            buttonDrawableU = styledAttributes.getDrawable(R.styleable.RsAngleStick_RsAngleStick_ButtonImageU)
             button_size_ratio = styledAttributes.getFraction( R.styleable.RsAngleStick_RsAngleStick_ButtonSizeRatio, 1, 1, 0.25f )
         } finally {
             styledAttributes.recycle()
         }
 
-        //!TBD
-        if (buttonDrawable is BitmapDrawable) {
-            button_bitmap = buttonDrawable.bitmap
+        if (buttonDrawableD is BitmapDrawable) {
+            button_bitmap_d = buttonDrawableD.bitmap
+            button_paint = Paint()
+        }
+        if (buttonDrawableU is BitmapDrawable) {
+            button_bitmap_u = buttonDrawableU.bitmap
             button_paint = Paint()
         }
     }

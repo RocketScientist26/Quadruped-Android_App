@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="RsAngleStick">
-        <attr name="RsAngleStick_ButtonImage" format="reference" />
+        <attr name="RsAngleStick_ButtonImageD" format="reference" />
+        <attr name="RsAngleStick_ButtonImageU" format="reference" />
         <attr name="RsAngleStick_ButtonSizeRatio" format="fraction"/>
     </declare-styleable>
 </resources>

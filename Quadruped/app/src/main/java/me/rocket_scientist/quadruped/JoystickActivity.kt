@@ -475,7 +475,7 @@ class JoystickActivity : AppCompatActivity() {
             }
         }
 
-        private fun SendCode(commandId: Int) {
+        private fun SendCmd(commandId: Int) {
             if (commandId == 2 || commandId == 3 || commandId == 4) {
                 MainActivity.btth_w.sendString("#1" + "-" + String.format("%01d", speed))
             } else if (commandId == 5) {
@@ -555,7 +555,7 @@ class JoystickActivity : AppCompatActivity() {
                         sptimer.cancel()
                         sptimer = Timer()
                         sptimer.schedule(MainActivity.cmd_interval, MainActivity.cmd_interval) {
-                            SendCode(current_cmd)
+                            SendCmd(current_cmd)
                         }
                     }
                     i = commands_count - 1
